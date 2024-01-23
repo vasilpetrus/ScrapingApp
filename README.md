@@ -12,7 +12,8 @@ Provides a user-friendly interface to select job functions and view scraped data
 
 - Java 17
 - Spring Boot
-- Jsoup 
+- Jsoup
+- Thymeleaf
 - PostgreSQL 
 - Spring Data JPA 
 - Maven 
