@@ -5,7 +5,7 @@ This Java application scrapes job listings from jobs.techstars.com based on spec
 ## Key Features
 
 Scrapes job details, including position name, organization URL, logo, labor function, address, posted date, description, and tags.
-Stores result in an SQL database (PostgreSQL or MySQL).
+Stores result in an SQL database (PostgreSQL).
 Provides a user-friendly interface to select job functions and view scraped data.
 
 ## Technologies Used
