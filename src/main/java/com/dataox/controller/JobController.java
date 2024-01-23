@@ -5,15 +5,13 @@ import com.dataox.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/jobs")
+@Controller
 public class JobController {
 
     private final JobService jobService;
@@ -23,9 +21,23 @@ public class JobController {
         this.jobService = jobService;
     }
 
-    @GetMapping("/scrape/{jobFunction}")
+    @GetMapping("/")
+    public String getHomePage(){
+        return "jobsearch";
+    }
+
+    @GetMapping("/jobs/scrape/{jobFunction}")
     public ResponseEntity<List<Job>> scrapeAndSaveJobs(@PathVariable String jobFunction) {
+        System.out.println(jobFunction);
         List<Job> jobs = jobService.scrapeAndSaveJobs(jobFunction);
         return new ResponseEntity<>(jobs, HttpStatus.OK);
+    }
+
+    @PostMapping("/search")
+    public String searchJobs(Model model, @RequestParam String jobFunction) {
+        System.out.println(jobFunction);
+        List<Job> jobs = jobService.scrapeAndSaveJobs(jobFunction);
+        model.addAttribute("jobs", jobs);
+        return "searchresults";
     }
 }

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Header styling */
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #333;
+        }
+
+        /* Table styling */
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
+        }
+
+        /* Back button styling */
+        .back-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Job Search Results</h1>
+    <a class="back-btn" href="/">Back to Search</a>
+</header>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Position Name</th>
+        <th>Organization Title</th>
+        <th>Job Page URL</th>
+        <th>Address</th>
+        <th>Description</th>
+        <th>Labor Function</th>
+        <th>Tags</th>
+        <th>Posted Date</th>
+        <th>Logo</th>
+        <th>URL to Organization</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="job : ${jobs}">
+        <td th:text="${job.getId()}"></td>
+        <td th:text="${job.getPositionName()}"></td>
+        <td th:text="${job.getOrganizationTitle()}"></td>
+        <td><a th:href="${job.getUrlToOrganization()}">Job page URL</a></td>
+        <td th:text="${job.getAddress()}"></td>
+        <td th:text="${job.getDescription()}"></td>
+        <td th:text="${job.getLaborFunction()}"></td>
+        <td th:text="${job.getTags()}"></td>
+        <td th:text="${job.getPostedDate()}"></td>
+        <td><img th:src="${job.getLogoUrl()}" th:alt="${job.getOrganizationTitle() + ' Logo'}"></td>
+        <td><a th:href="${job.getUrlToOrganization()}">URL to Organization</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
