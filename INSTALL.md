@@ -18,4 +18,4 @@ Create a database and set values in environment variables:
 * DATABASE_USERNAME
 * DATABASE_PASSWORD 
 
-Run application and [open] (http://localhost:8080/api/swagger-ui/)
+Run application and [open](http://localhost:8080/api/swagger-ui/)
