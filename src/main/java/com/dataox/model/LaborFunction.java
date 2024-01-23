@@ -1,5 +1,11 @@
 package com.dataox.model;
 
+import lombok.Getter;
+
+/**
+ * Labor function from jobs.techstars.com/jobs
+ */
+@Getter
 public enum LaborFunction {
 
     ACCOUNTING_AND_FINANCE("Accounting & Finance"),
@@ -18,20 +24,18 @@ public enum LaborFunction {
     SALES_AND_BUSINESS_DEVELOPMENT("Sales & Business Development"),
     SOFTWARE_ENGINEERING("Software Engineering");
 
-    private String value;
+    private final String value;
 
     LaborFunction(String value) {
         this.value = value;
     }
 
-    public String getValue() {
-        return value;
-    }
-
-    public static LaborFunction fromString(String value) {
+    public static String fromString(String value) {
         for (LaborFunction laborFunction : LaborFunction.values()) {
-            if (laborFunction.value.equals(value)) {
-                return laborFunction;
+            System.out.println(laborFunction.name());
+            System.out.println(value);
+            if (laborFunction.value.equalsIgnoreCase(value)) {
+                return laborFunction.getValue();
             }
         }
         return null;
